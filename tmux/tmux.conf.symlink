@@ -5,6 +5,7 @@ set-window-option -g xterm-keys on
 bind r source-file ~/.tmux.conf
 bind \ split-window -h -c '#{pane_current_path}'
 bind / split-window -v -c '#{pane_current_path}'
+bind c new-window -c '#{pane_current_path}'
 
 # Count sessions start at 1
 set -g base-index 1
@@ -26,7 +27,7 @@ set -g status-fg white
 set -g status-interval 5 
 set -g status-left-length 90
 set -g status-right-length 60
-set -g status-left "#[fg=Green]#(whoami)#[fg=white]@#[fg=blue]#(hostname -s)#[fg=white]::#[fg=yellow]#"
+set -g status-left "#[fg=colour40]#(whoami)#[fg=colour15]@#[fg=colour19]#(hostname -s)#[fg=colour15]::#[fg=colour190]#"
 set -g status-justify left
 set -g status-right '#[fg=Cyan]#S #[fg=white]%a %d %b %R'
 
