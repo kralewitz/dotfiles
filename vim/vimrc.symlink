@@ -11,6 +11,7 @@ set nocompatible			" disable compatibility with legacy vi
 set encoding=utf-8          " 
 set showcmd				    " display incomplete commands
 set number                  " show line numbers
+set relativenumber          " 
 set ruler                   " always show cursor position
 set history=1000            " 
 set scrolloff=3             " always keep num lines around the cursor
@@ -42,9 +43,14 @@ set undodir=~/.vim/tmp//,.      " store undo files in one place
 
 set splitright                  " Open split windows on the right
 set splitbelow                  " Open split windows below
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
+map <C-M> <C-W>_
 set wmh=0
+let mapleader="<space>"
+nnoremap <leader><leader> <C-^>
 
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
