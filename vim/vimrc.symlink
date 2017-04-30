@@ -1,0 +1,67 @@
+" kwz .vimrc
+" version 0.1
+"
+
+
+" General setup
+"
+filetype plugin indent on	" load file type plugins w/ indentation
+syntax enable				" 
+set nocompatible			" disable compatibility with legacy vi
+set encoding=utf-8          " 
+set showcmd				    " display incomplete commands
+set number                  " show line numbers
+set ruler                   " always show cursor position
+set history=1000            " 
+set scrolloff=3             " always keep num lines around the cursor
+
+
+" Whitespace setup
+"
+set nowrap				        " do not wrap lines
+set tabstop=4 shiftwidth=4		" set tab size
+set expandtab				    " expand tabs into spaces
+set backspace=indent,eol,start	" allow backspacing over autoindent, line breaks, and start of insert
+
+" Search setup
+"
+set hlsearch				" highlight search matches
+set incsearch				" enable incremental searching
+set ignorecase				" enable case insensitive search
+set smartcase				" search with case if term has a capital letter
+
+" Extra settings
+" Write the file with sudo
+cmap w!! w !sudo tee > /dev/null %
+" Clear the search buffer after hitting enter
+:nnoremap <CR> :nohlsearch<cr>
+
+set backupdir=~/.vim/tmp//,.
+set directory=~/.vim/tmp//,.    " store swap files in one place
+set undodir=~/.vim/tmp//,.      " store undo files in one place
+
+set splitright                  " Open split windows on the right
+set splitbelow                  " Open split windows below
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+set wmh=0
+
+" Get the defaults that most users want.
+source $VIMRUNTIME/defaults.vim
+
+" Color scheme
+syntax enable
+set background=dark
+colorscheme delek
+highlight StatusLine ctermbg=DarkGrey
+
+" Status line
+if has("statusline") && !&cp
+  set laststatus=2                   " always show the status bar
+  set statusline=%<%1*\ %f\ %*       " filename
+  set statusline+=%2*%m%r%*          " modified, readonly
+  set statusline+=\ %3*%y%*          " filetype
+  set statusline+=%=                 " left-right separation point
+  set statusline+=\ %5*%l%*/%L[%p%%] " current line/total lines
+  set statusline+=\ %5*%v%*[0x%B]    " current column [hex char]
+endif
