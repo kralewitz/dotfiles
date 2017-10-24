@@ -34,10 +34,10 @@ set -g status-fg white
 set -g status-interval 5 
 set -g status-left-length 90
 set -g status-right-length 60
-set -g status-left "#[fg=colour40]#(whoami)#[fg=colour15]@#[fg=colour19]#(hostname -s)#[fg=colour15]::#[fg=colour190]#"
+set -g status-left "#(whoami)@#(hostname -s) "
 set -g status-justify left
 set -g status-right '#[fg=Cyan]#S #[fg=white]%a %d %b %R'
-set -g @colors-solarized 'dark'
+#set -g @colors-solarized 'dark'
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
