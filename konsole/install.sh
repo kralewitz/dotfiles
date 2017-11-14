@@ -2,6 +2,8 @@
 
 set -o errexit -o nounset
 
+mkdir -p ~/.local/share/konsole
+
 cat <<EOF > ~/.local/share/konsole/terminal-sexy.colorscheme
 # --- special colors ---
 
