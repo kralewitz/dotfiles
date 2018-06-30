@@ -2,6 +2,16 @@
 
 set -o errexit -o nounset
 
+if [ ! -e ~/.tmux.conf ]; then
+  echo "~/.tmux.conf not found, please run bootstrap script first"
+  exit
+fi
+
+if tmux info &> /dev/null; then
+  echo "tmux server is running, reloading config"
+  tmux source ~/.tmux.conf
+fi
+
 # Install tmux plugin manager
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "Installing tmux plugin manager"
