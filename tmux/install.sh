@@ -7,7 +7,7 @@ if [ ! -e ~/.tmux.conf ]; then
   exit
 fi
 
-if tmux info &> /dev/null; then
+if tmux info &> /dev/null || tmux ls &> /dev/null; then
   echo "tmux server is running, reloading config"
   tmux source ~/.tmux.conf
 fi
