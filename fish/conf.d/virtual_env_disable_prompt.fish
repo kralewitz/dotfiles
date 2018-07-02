@@ -1,0 +1,1 @@
+set -xg VIRTUAL_ENV_DISABLE_PROMPT True
