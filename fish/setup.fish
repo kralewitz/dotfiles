@@ -4,13 +4,12 @@ set DFDIR (dirname (status filename))
 
 echo $DFDIR
 
-if not test -e $HOME/.config/fish/functions/fisher.fish
+ln -s $DFDIR/fishfile $HOME/.config/fish/fishfile
 
-    echo "downloading fisher"
-    curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-
-    echo "installing fisher plugins"
-    fisher omf/theme-bobthefish get ansible-completion docker-completion
+if not functions -q fisher
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
 end
 
 echo "copying functions and configuration"
