@@ -6,5 +6,6 @@ end
 
 if test -d /usr/local/go/bin
 	set -xg PATH $PATH /usr/local/go/bin
-	set -xg GOPATH /home/kwz
+#	set -xg GOPATH /home/kwz
 end
+
