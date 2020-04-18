@@ -1,0 +1,73 @@
+#! /usr/bin/env fish
+
+set -g __layout_dir ~/.config/bspwm/layouts
+set -g __layout_ext ".scrl"
+
+#set -g dry_run yes
+
+function bspcdo
+    if test -n "$dry_run"
+        echo "bspc $argv"
+    else
+        bspc $argv
+    end
+end
+
+function err
+    echo $argv >&2
+    exit 1
+end
+
+# get available layouts
+function layout_ls
+    for f in "$__layout_dir"/*"$__layout_ext"
+        echo (basename (string replace $__layout_ext "" $f))
+    end
+end
+
+function layout_switch
+    set -l layout_file "$__layout_dir"/"$argv[1]$__layout_ext"
+
+    if test ! -r "$layout_file"
+        err "Layout file $layout_file does not exist or not readable."
+    end
+
+    cat "$layout_file" | while read -d ":" head desktops resolution
+        set -a head_order "$head" 
+        set desktop_list (string split "," "$desktops")
+        bspcdo monitor "$head" -d $desktop_list
+        bspcdo monitor "$head" -g "$resolution"
+    end
+
+    bspcdo wm -O "$head_order"
+
+    for head in (bspc query -M --names)
+        if contains $head $head_order
+            continue
+        end
+
+        for node in (bspc query -N -m "$head")
+            bspcdo node "$node" -d 0
+        end
+        bspcdo monitor "$head" -r
+    end
+
+end
+
+function usage
+    set -l name (basename (status -f))
+    echo "
+$name - Switch BSPWM head layout
+Usage:
+    $name [layout-name]
+    "
+end
+
+switch (count $argv)
+case 0
+    layout_ls
+case 1
+    layout_switch $argv[1]
+case '*'
+    usage
+end
