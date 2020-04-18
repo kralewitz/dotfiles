@@ -9,3 +9,10 @@ if test -d /usr/local/go/bin
 #	set -xg GOPATH /home/kwz
 end
 
+if test -d $HOME/go/bin
+    set -xg PATH $PATH $HOME/go/bin
+end
+
+if test -d $HOME/.dotfiles/bin
+	set -xg PATH $PATH $HOME/.dotfiles/bin
+end
