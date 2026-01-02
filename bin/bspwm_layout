@@ -39,7 +39,7 @@ function layout_switch
         bspcdo monitor "$head" -g "$resolution"
     end
 
-    bspcdo wm -O "$head_order"
+    bspcdo wm -O $head_order
 
     for head in (bspc query -M --names)
         if contains $head $head_order

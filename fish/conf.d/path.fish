@@ -16,3 +16,7 @@ end
 if test -d $HOME/.dotfiles/bin
 	set -xg PATH $PATH $HOME/.dotfiles/bin
 end
+
+if test -d $HOME/.local/bin
+        set -xg PATH $PATH $HOME/.local/bin
+end
