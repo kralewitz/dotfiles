@@ -5,9 +5,12 @@
 
 " General setup
 "
+
+set nocompatible			" disable compatibility with legacy vi
+colorscheme habamax
+
 filetype plugin indent on	" load file type plugins w/ indentation
 syntax enable				" 
-set nocompatible			" disable compatibility with legacy vi
 set encoding=utf-8          " 
 set showcmd				    " display incomplete commands
 set number                  " show line numbers
@@ -61,7 +64,6 @@ source $VIMRUNTIME/defaults.vim
 " Color scheme
 syntax enable
 set background=dark
-colorscheme delek
 highlight StatusLine ctermbg=DarkGrey
 
 " Status line

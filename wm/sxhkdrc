@@ -5,7 +5,8 @@
 #
 
 super + Return
-        konsole
+        ghostty
+#        konsole
 
 super + @space
         rofi -show run -sidebar-mode -modi "run,ssh,window,layout:bspwm_layout"
